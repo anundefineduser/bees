@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 using KOTLIN.Subtitles;
 using Pixelplacement;
+using KOTLIN.Translation;
 
 public class GameControllerScript : Singleton<GameControllerScript>
 {
@@ -162,11 +163,11 @@ public class GameControllerScript : Singleton<GameControllerScript>
 	{
 		if (this.mode == "story")
 		{
-			this.notebookCount.text = this.notebooks.ToString() + "/7 Notebooks";
+			this.notebookCount.text = this.notebooks.ToString() + $"/7 {TranslationManager.Instance.GetTranslationString("Notebooks")}";
 		}
 		else
 		{
-			this.notebookCount.text = this.notebooks.ToString() + " Notebooks";
+			this.notebookCount.text = this.notebooks.ToString() + TranslationManager.Instance.GetTranslationString("Notebooks");
 		}
 		if (this.notebooks == 7 & this.mode == "story")
 		{
@@ -526,7 +527,7 @@ public class GameControllerScript : Singleton<GameControllerScript>
 
 	private void UpdateItemName()
 	{
-		this.itemText.text = this.itemNames[this.item[this.itemSelected]];
+		this.itemText.text = TranslationManager.Instance.GetTranslationString(this.itemNames[this.item[this.itemSelected]]);
 	}
 
 	public void ExitReached()

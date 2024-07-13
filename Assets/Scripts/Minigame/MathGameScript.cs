@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KOTLIN.Translation;
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -71,7 +72,7 @@ public class MathGameScript : MonoBehaviour
                     this.solution = this.num1 + this.num2;
                     this.questionText.text = string.Concat(new object[]
                     {
-                        "SOLVE MATH Q",
+                        TranslationManager.Instance.GetTranslationString("Minigame_MathGame_SolveQ"),
                         this.problem,
                         ": \n \n",
                         this.num1,
@@ -86,7 +87,7 @@ public class MathGameScript : MonoBehaviour
                     this.solution = this.num1 - this.num2;
                     this.questionText.text = string.Concat(new object[]
                     {
-                        "SOLVE MATH Q",
+                        TranslationManager.Instance.GetTranslationString("Minigame_MathGame_SolveQ"),
                         this.problem,
                         ": \n \n",
                         this.num1,
@@ -111,7 +112,7 @@ public class MathGameScript : MonoBehaviour
                 {
                     this.questionText.text = string.Concat(new object[]
                     {
-                        "SOLVE MATH Q",
+                        TranslationManager.Instance.GetTranslationString("Minigame_MathGame_SolveQ"),
                         this.problem,
                         ": \n",
                         this.num1,
@@ -130,7 +131,7 @@ public class MathGameScript : MonoBehaviour
                 {
                     this.questionText.text = string.Concat(new object[]
                     {
-                        "SOLVE MATH Q",
+                        TranslationManager.Instance.GetTranslationString("Minigame_MathGame_SolveQ"),
                         this.problem,
                         ": \n (",
                         this.num1,
@@ -153,7 +154,7 @@ public class MathGameScript : MonoBehaviour
                 {
                     this.questionText2.text = string.Concat(new object[]
                     {
-                        "SOLVE MATH Q",
+                        TranslationManager.Instance.GetTranslationString("Minigame_MathGame_SolveQ"),
                         this.problem,
                         ": \n",
                         this.num1,
@@ -168,7 +169,7 @@ public class MathGameScript : MonoBehaviour
                 {
                     this.questionText2.text = string.Concat(new object[]
                     {
-                        "SOLVE MATH Q",
+                        TranslationManager.Instance.GetTranslationString("Minigame_MathGame_SolveQ"),
                         this.problem,
                         ": \n (",
                         this.num1,
@@ -187,7 +188,7 @@ public class MathGameScript : MonoBehaviour
                 {
                     this.questionText3.text = string.Concat(new object[]
                     {
-                        "SOLVE MATH Q",
+                        TranslationManager.Instance.GetTranslationString("Minigame_MathGame_SolveQ"),
                         this.problem,
                         ": \n",
                         this.num1,
@@ -202,7 +203,7 @@ public class MathGameScript : MonoBehaviour
                 {
                     this.questionText3.text = string.Concat(new object[]
                     {
-                        "SOLVE MATH Q",
+                        TranslationManager.Instance.GetTranslationString("Minigame_MathGame_SolveQ"),
                         this.problem,
                         ": \n (",
                         this.num1,
@@ -222,16 +223,16 @@ public class MathGameScript : MonoBehaviour
             this.endDelay = 5f;
             if (!this.gc.spoopMode)
             {
-                this.questionText.text = "WOW! YOU EXIST!";
+                this.questionText.text = TranslationManager.Instance.GetTranslationString("Minigame_MathGame_WOW"); 
             }
             else if (this.gc.mode == "endless" & this.problemsWrong <= 0)
             {
                 int num = Mathf.RoundToInt(UnityEngine.Random.Range(0f, 1f));
-                this.questionText.text = this.endlessHintText[num];
+                this.questionText.text = TranslationManager.Instance.GetTranslationString(endlessHintText[num]);
             }
             else if (this.gc.mode == "story" & this.problemsWrong >= 3)
             {
-                this.questionText.text = "I HEAR MATH THAT BAD";
+                this.questionText.text = TranslationManager.Instance.GetTranslationString("Minigame_MathGame_HEARBADMATH");
                 this.questionText2.text = string.Empty;
                 this.questionText3.text = string.Empty;
                 if (this.baldiScript.isActiveAndEnabled) this.baldiScript.Hear(this.playerPosition, 7f);
@@ -240,7 +241,7 @@ public class MathGameScript : MonoBehaviour
             else
             {
                 int num2 = Mathf.RoundToInt(UnityEngine.Random.Range(0f, 1f));
-                this.questionText.text = this.hintText[num2];
+                this.questionText.text = TranslationManager.Instance.GetTranslationString(hintText[num2]);
                 this.questionText2.text = string.Empty;
                 this.questionText3.text = string.Empty;
             }
@@ -256,12 +257,12 @@ public class MathGameScript : MonoBehaviour
     {
         if (this.playerAnswer.text == "31718")
         {
-            base.StartCoroutine(this.CheatText("THIS IS WHERE IT ALL BEGAN"));
+            base.StartCoroutine(this.CheatText(TranslationManager.Instance.GetTranslationString("Minigame_MathGame_AllBegan")));
             SceneManager.LoadSceneAsync("TestRoom");
         }
         else if (this.playerAnswer.text == "53045009")
         {
-            base.StartCoroutine(this.CheatText("USE THESE TO STICK TO THE CEILING!"));
+            base.StartCoroutine(this.CheatText(TranslationManager.Instance.GetTranslationString("Minigame_MathGame_StickCeiling")));
             this.gc.Fliparoo();
         }
         if (this.problem <= 3)
@@ -436,14 +437,14 @@ public class MathGameScript : MonoBehaviour
 
     private string[] hintText = new string[]
     {
-        "I GET ANGRIER FOR EVERY PROBLEM YOU GET WRONG",
-        "I HEAR EVERY DOOR YOU OPEN"
+       "Minigame_MathGame_Hint_EveryWrongProblem",
+       "Minigame_MathGame_Hint_EveryDoor",
     };
 
     private string[] endlessHintText = new string[]
     {
-        "That's more like it...",
-        "Keep up the good work or see me after class..."
+        "Minigame_MathGame_EndlessHint_MoreLikeIt",
+        "Minigame_MathGame_EndlessHint_SeeMeAfterClass"
     };
 
     private bool questionInProgress;

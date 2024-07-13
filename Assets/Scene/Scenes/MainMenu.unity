@@ -20193,18 +20193,18 @@ MonoBehaviour:
     [YOURGAME] by [YOU]
 
 
-    --Kotlin by
-    @CatsheeJS--
+    <size=30>--Kotlin
+    by @CatsheeJS, @Hunbun999--
 
-    <size=20>Quad convertor & Subtitle calculations by @BlueVapor1234
+    <size=20>Quad convertor & Subtitle calculations
+    by @BlueVapor1234
 
-    Billboard
-    & Pickup Animations by @YuraSuper2048
+    Billboard & Pickup Animations by @YuraSuper2048
 
-    Polish Translation by @Benefond
+    Polish
+    Translation by @Benefond
 
-    Nothing
-    by @PixelThistle'
+    Nothing by @PixelThistle'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 21749360ea10093439a1f9266c91c718, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 9ea8bb120e8a8ba4aa942913babb2161, type: 2}

@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using KOTLIN.Translation;
+using TMPro;
 using UnityEngine;
 
 public class DetentionTextScript : MonoBehaviour
@@ -12,7 +13,7 @@ public class DetentionTextScript : MonoBehaviour
     {
         if (this.door.lockTime > 0f)
         {
-            this.text.text = "You have detention! \n" + Mathf.CeilToInt(this.door.lockTime) + " seconds remain!";
+            this.text.text = TranslationManager.Instance.GetTranslationString("World_Detention_YouHave") + Mathf.CeilToInt(this.door.lockTime) + TranslationManager.Instance.GetTranslationString("World_Detention_SecondsRemain");
         }
         else
         {

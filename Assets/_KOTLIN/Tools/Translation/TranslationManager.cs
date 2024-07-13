@@ -16,7 +16,7 @@ namespace KOTLIN.Translation
 
         private void Awake()
         {
-            FindTranslationJSON("EN");
+            FindTranslationJSON(PlayerPrefs.GetString("KOTLIN_Lang", "EN"));
         }
 
         private void FindTranslationJSON(string lang)

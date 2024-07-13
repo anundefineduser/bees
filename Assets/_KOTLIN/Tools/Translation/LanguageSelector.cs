@@ -16,6 +16,7 @@ namespace KOTLIN.Translation
         public void OnSelectNewLanguage(int id)
         {
             TranslationManager.Instance.SetLanguage(FullToSmallName[GetComponent<TMP_Dropdown>().options[id].text]);
+            PlayerPrefs.SetString("KOTLIN_Lang", FullToSmallName[GetComponent<TMP_Dropdown>().options[id].text]); 
         }
     }
 }
