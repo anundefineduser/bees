@@ -20,5 +20,7 @@
     "MENU_Options_TurnSen": "TURN SENSITIVITY",
     "MENU_Options_Controls": "CONTROLS",
     "MENU_Options_Rumble": "RUMBLE",
-    "MENU_Options_Analog": "ANALOG\nMOVEMENT"
+    "MENU_Options_Analog": "ANALOG\nMOVEMENT",
+
+    "MENU_Load": "LOAD"
 }
