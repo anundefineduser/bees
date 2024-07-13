@@ -54,7 +54,8 @@ namespace KOTLIN.Translation
                 return "KOTLIN_ERR_NO_TRANSLATION";
             }
 
-            if (currentTranslation[key] == null)
+            currentTranslation.TryGetValue(key, out string val);
+            if (val == null)
             {
                 return "KOTLIN_ERR_KEY_NOT_FOUND";
             }

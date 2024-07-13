@@ -1,5 +1,22 @@
 {
+    "Notebooks": "Notebooks",
+
     "MENU_Back": "BACK",
+    "MENU_Start": "START",
+    "MENU_Menu": "MENU",
+
+    "MENU_Play_Endless": "Endless Mode:\nCollect as many notebooks as you can!",
+    "MENU_Play_Story": "Story Mode:\nCollect all 7 notebooks, and then exit the school, to win!",
+    "MENU_Play_HighScore": "High Score: ", 
+
+    "MENU_Menu_How": "HOW TO PLAY", 
+    "MENU_Menu_Options": "OPTIONS", 
+    "MENU_Menu_Credits": "CREDITS",
+
+    "MENU_Story_Story": "Oh noes! School is out, but your friend has a problem!\nHe left all his noteboos in school, but doesn't have time to go get them, because if he does he'll be late for eating practice. To help him out, you have to go back in the school and find all his notebooks for him. Ir won't be easy though! Baldi loves challenging his students with fun trivia problems whenever he can! Each time you find a notebook, you'll have to answer some questions\n\nTo win thegame, you must find 7 notebooks, and then exit the schooL! You have to have fun too, of course!",
+    
+    "MENU_Credits_Credits": "Original Baldi by @mystman12\n[YOURGAME] by [YOU]\n\n--Kotlin by @CatsheeJS--\n<size=20>Quad convertor & Subtitle calculations by @BlueVapor1234\nBillboard & Pickup Animations by @YuraSuper2048\nPolish Translation by @Benefond\nNothing by @PixelThistle",
+    
     "MENU_Options_TurnSen": "TURN SENSITIVITY",
     "MENU_Options_Controls": "CONTROLS",
     "MENU_Options_Rumble": "RUMBLE",
