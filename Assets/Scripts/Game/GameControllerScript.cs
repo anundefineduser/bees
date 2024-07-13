@@ -6,8 +6,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using KOTLIN.Subtitles;
+using Pixelplacement;
 
-public class GameControllerScript : MonoBehaviour
+public class GameControllerScript : Singleton<GameControllerScript>
 {
 	public GameControllerScript()
 	{

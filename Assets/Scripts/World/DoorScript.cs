@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using KOTLIN.Subtitles;
+using UnityEngine;
 
 public class DoorScript : MonoBehaviour
 {
@@ -44,6 +45,7 @@ public class DoorScript : MonoBehaviour
                     this.baldi.Hear(base.transform.position, 1f); //If the door isn't silent, Baldi hears the door with a priority of 1.
                 }
                 this.OpenDoor();
+                SubtitleManager.Instance.CreateSubtitle(SubtitleType.ThreeD, "DOOR OPEN", 3, false, Color.blue, myAudio, transform);
                 if (this.silentOpens > 0) //If the door is silent
                 {
                     this.silentOpens--; //Decrease the amount of opens the door will stay quite for.
