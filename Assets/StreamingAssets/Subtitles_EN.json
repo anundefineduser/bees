@@ -26,7 +26,7 @@
     
     "World_Detention_YouHave": "You have detention! \n", 
     "World_Detention_SecondsRemain": " seconds remain!",
-    
+
     "Minigame_MathGame_AnswerPlaceholder": "Enter Answer...",
     "Minigame_MathGame_SolveQ": "SOLVE MATH Q",
     "Minigame_MathGame_WOW": "WOW! YOU EXIST!",
@@ -36,5 +36,17 @@
     "Minigame_MathGame_Hint_EveryWrongProblem": "I GET ANGRIER FOR EVERY PROBLEM YOU GET WRONG",
     "Minigame_MathGame_Hint_EveryDoor": "I HEAR EVERY DOOR YOU OPEN",
     "Minigame_MathGame_EndlessHint_MoreLikeIt": "That's more like it...",
-    "Minigame_MathGame_EndlessHint_SeeMeAfterClass": "Keep up the good work or see me after class..."
+    "Minigame_MathGame_EndlessHint_SeeMeAfterClass": "Keep up the good work or see me after class...",
+
+    "ITM_Nothing": "Nothing", 
+    "ITM_Zesty": "Energy flavored Zesty Bar",
+    "ITM_YellowLock": "Yellow Door Lock",
+    "ITM_Keys": "Principal's Keys",
+    "ITM_BSODA": "BSODA", 
+    "ITM_Quarter": "Quarter",
+    "ITM_BAHaDT": "Baldi Anti Hearing and Disorienting Tape", 
+    "ITM_Alarm": "Alarm Clock", 
+    "ITM_WDNS": "WD-NoSquee (Door Type)",
+    "ITM_Scissors": "Safety Scissors",
+    "ITM_Boots": "Big Ol' Boots"
 }

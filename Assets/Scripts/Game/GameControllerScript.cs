@@ -9,6 +9,8 @@ using UnityEngine.UIElements;
 using KOTLIN.Subtitles;
 using Pixelplacement;
 using KOTLIN.Translation;
+using UnityEngine.Events;
+using static UnityEditor.Progress;
 
 public class GameControllerScript : Singleton<GameControllerScript>
 {
@@ -330,35 +332,33 @@ public class GameControllerScript : Singleton<GameControllerScript>
 		this.UpdateItemName();
 	}
 
+	//basic v0.3 prerelease
 	public void CollectItem(int item_ID)
 	{
-		if (this.item[0] == 0)
-		{
-			this.item[0] = item_ID; //Set the item slot to the Item_ID provided
-			this.itemSlot[0].texture = this.itemTextures[item_ID]; //Set the item slot's texture to a texture in a list of textures based on the Item_ID
-		}
-		else if (this.item[1] == 0)
-		{
-			this.item[1] = item_ID; //Set the item slot to the Item_ID provided
-            this.itemSlot[1].texture = this.itemTextures[item_ID]; //Set the item slot's texture to a texture in a list of textures based on the Item_ID
+        int emptySlotIndex = -1;
+        for (int i = 0; i < this.item.Length; i++)
+        {
+            if (this.item[i] == 0)
+            {
+                emptySlotIndex = i;
+                break;
+            }
         }
-		else if (this.item[2] == 0)
-		{
-			this.item[2] = item_ID; //Set the item slot to the Item_ID provided
-            this.itemSlot[2].texture = this.itemTextures[item_ID]; //Set the item slot's texture to a texture in a list of textures based on the Item_ID
-        }
-		else //This one overwrites the currently selected slot when your inventory is full
-		{
-			this.item[this.itemSelected] = item_ID;
-			this.itemSlot[this.itemSelected].texture = this.itemTextures[item_ID];
-		}
-		this.UpdateItemName();
-	}
+
+        int slotIndex = emptySlotIndex != -1 ? emptySlotIndex : this.itemSelected;
+
+        this.item[slotIndex] = item_ID;
+        this.itemSlot[slotIndex].texture = itemManager.items[item_ID].ItemSprite;
+
+        itemManager.items[this.itemSelected].OnPickup?.Invoke();
+        this.UpdateItemName();
+    }
 
 	private void UseItem()
 	{
 		if (this.item[this.itemSelected] != 0)
 		{
+			itemManager.items[this.itemSelected].OnUse?.Invoke(); 
 			if (this.item[this.itemSelected] == 1)
 			{
 				this.player.stamina = this.player.maxStamina * 2f;
@@ -514,7 +514,7 @@ public class GameControllerScript : Singleton<GameControllerScript>
 	private void ResetItem()
 	{
 		this.item[this.itemSelected] = 0;
-		this.itemSlot[this.itemSelected].texture = this.itemTextures[0];
+		this.itemSlot[this.itemSelected].texture = itemManager.items[0].ItemSprite;
 		this.UpdateItemName();
 	}
 
@@ -527,7 +527,7 @@ public class GameControllerScript : Singleton<GameControllerScript>
 
 	private void UpdateItemName()
 	{
-		this.itemText.text = TranslationManager.Instance.GetTranslationString(this.itemNames[this.item[this.itemSelected]]);
+		this.itemText.text = TranslationManager.Instance.GetTranslationString(itemManager.items[this.item[this.itemSelected]].NameKey);
 	}
 
 	public void ExitReached()
@@ -569,6 +569,8 @@ public class GameControllerScript : Singleton<GameControllerScript>
 		this.player.flipaturn = -1f;
 		Camera.main.GetComponent<CameraScript>().offset = new Vector3(0f, -1f, 0f);
 	}
+
+	[SerializeField] private ItemManager itemManager; 
 
 	public CursorControllerScript cursorController;
 
@@ -665,9 +667,7 @@ public class GameControllerScript : Singleton<GameControllerScript>
 		"Big Ol' Boots"
 	};
 
-	public TMP_Text itemText;
-
-	public UnityEngine.Object[] items = new UnityEngine.Object[10];
+	public TMP_Text itemText;	
 
 	public Texture[] itemTextures = new Texture[10];
 
