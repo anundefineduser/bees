@@ -1,7 +1,7 @@
 ﻿using KOTLIN.Subtitles;
 using UnityEngine;
 
-public class DoorScript : MonoBehaviour
+public class DoorScript : KOTLIN.Interactions.Interactable
 {
     private void Start()
     {
@@ -34,23 +34,19 @@ public class DoorScript : MonoBehaviour
                 this.myAudio.PlayOneShot(this.doorClose, 1f); //Play the door close sound
             }
         }
-        if (Input.GetMouseButtonDown(0) && Time.timeScale != 0f) //If the door is left clicked and the game isn't paused
+    }
+
+    public override void Interact()
+    {
+        if (this.baldi.isActiveAndEnabled & this.silentOpens <= 0)
         {
-            Ray ray = Camera.main.ScreenPointToRay(new Vector3((float)(Screen.width / 2), (float)(Screen.height / 2), 0f));
-            RaycastHit raycastHit;
-            if (Physics.Raycast(ray, out raycastHit) && (raycastHit.collider == this.trigger & Vector3.Distance(this.player.position, base.transform.position) < this.openingDistance & !this.bDoorLocked))
-            {
-                if (this.baldi.isActiveAndEnabled & this.silentOpens <= 0)
-                {
-                    this.baldi.Hear(base.transform.position, 1f); //If the door isn't silent, Baldi hears the door with a priority of 1.
-                }
-                this.OpenDoor();
-                //SubtitleManager.Instance.CreateSubtitleTranslated(SubtitleType.ThreeD, "World_DoorOpen", 3, false, Color.blue, myAudio, transform);
-                if (this.silentOpens > 0) //If the door is silent
-                {
-                    this.silentOpens--; //Decrease the amount of opens the door will stay quite for.
-                }
-            }
+            this.baldi.Hear(base.transform.position, 1f); //If the door isn't silent, Baldi hears the door with a priority of 1.
+        }
+        this.OpenDoor();
+        //SubtitleManager.Instance.CreateSubtitleTranslated(SubtitleType.ThreeD, "World_DoorOpen", 3, false, Color.blue, myAudio, transform);
+        if (this.silentOpens > 0) //If the door is silent
+        {
+            this.silentOpens--; //Decrease the amount of opens the door will stay quite for.
         }
     }
 
