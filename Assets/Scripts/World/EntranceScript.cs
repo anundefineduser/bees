@@ -20,7 +20,7 @@ public class EntranceScript : MonoBehaviour
         else if (decompType != DecompType.Classic && gc.notebooks >= gc.MaxNotebooks)
         {
             Vector3 nextPos = wall.transform.position - new Vector3(0f, 10f, 0f);
-            Tween.Position(wall.transform, nextPos, 1, Ease.Linear); 
+            PrimeTween.Tween.Position(wall.transform, nextPos, 1, PrimeTween.Ease.Linear); 
         }
     }
 
