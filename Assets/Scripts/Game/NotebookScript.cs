@@ -1,7 +1,8 @@
 ﻿//using Rewired;
+using KOTLIN.Interactions;
 using UnityEngine;
 
-public class NotebookScript : MonoBehaviour
+public class NotebookScript : Interactable
 {
     private void Start()
     {
@@ -27,25 +28,19 @@ public class NotebookScript : MonoBehaviour
                 this.audioDevice.Play();
             }
         }
-        if (Input.GetMouseButtonDown(0) && Time.timeScale != 0f)
-        {
-            Ray ray = Camera.main.ScreenPointToRay(new Vector3((float)(Screen.width / 2), (float)(Screen.height / 2), 0f));
-            RaycastHit raycastHit;
-            if (Physics.Raycast(ray, out raycastHit) && (raycastHit.transform.tag == "Notebook" & Vector3.Distance(this.player.position, base.transform.position) < this.openingDistance))
-            {
-                base.transform.position = new Vector3(base.transform.position.x, -20f, base.transform.position.z);
-                this.up = false;
-                this.respawnTime = 120f;
-                this.gc.CollectNotebook();
-                GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.learningGame);
-                gameObject.GetComponent<MathGameScript>().gc = this.gc;
-                gameObject.GetComponent<MathGameScript>().baldiScript = this.bsc;
-                gameObject.GetComponent<MathGameScript>().playerPosition = this.player.position;
-            }
-        }
     }
 
-    public float openingDistance;
+    public override void Interact()
+    {
+        base.transform.position = new Vector3(base.transform.position.x, -20f, base.transform.position.z);
+        this.up = false;
+        this.respawnTime = 120f;
+        this.gc.CollectNotebook();
+        GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.learningGame);
+        gameObject.GetComponent<MathGameScript>().gc = this.gc;
+        gameObject.GetComponent<MathGameScript>().baldiScript = this.bsc;
+        gameObject.GetComponent<MathGameScript>().playerPosition = this.player.position;
+    }
 
     public GameControllerScript gc;
 

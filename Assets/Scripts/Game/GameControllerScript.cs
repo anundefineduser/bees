@@ -1,4 +1,4 @@
-﻿using KOTLIN;
+﻿using KOTLIN.Interactions;
 using System;
 using System.Collections;
 using TMPro;
@@ -10,7 +10,6 @@ using KOTLIN.Subtitles;
 using Pixelplacement;
 using KOTLIN.Translation;
 using UnityEngine.Events;
-using static UnityEditor.Progress;
 
 public class GameControllerScript : Singleton<GameControllerScript>
 {
@@ -350,7 +349,7 @@ public class GameControllerScript : Singleton<GameControllerScript>
         this.item[slotIndex] = item_ID;
         this.itemSlot[slotIndex].texture = itemManager.items[item_ID].ItemSprite;
 
-        itemManager.items[this.itemSelected].OnPickup?.Invoke();
+        itemManager.items[this.item[itemSelected]].OnPickup?.Invoke();
         this.UpdateItemName();
     }
 
@@ -358,8 +357,8 @@ public class GameControllerScript : Singleton<GameControllerScript>
 	{
 		if (this.item[this.itemSelected] != 0)
 		{
-			itemManager.items[this.itemSelected].OnUse?.Invoke(); 
-			if (this.item[this.itemSelected] == 1)
+			itemManager.items[this.item[itemSelected]].OnUse?.Invoke(); 
+/*			if (this.item[this.itemSelected] == 1)
 			{
 				this.player.stamina = this.player.maxStamina * 2f;
 				this.ResetItem();
@@ -467,11 +466,11 @@ public class GameControllerScript : Singleton<GameControllerScript>
 				this.player.ActivateBoots();
 				base.StartCoroutine(this.BootAnimation());
 				this.ResetItem();
-			}
+			}*/
 		}
 	}
 
-	private IEnumerator BootAnimation()
+	public IEnumerator BootAnimation()
 	{
 		float time = 15f;
 		float height = 375f;
@@ -511,7 +510,7 @@ public class GameControllerScript : Singleton<GameControllerScript>
 		yield break;
 	}
 
-	private void ResetItem()
+	public void ResetItem()
 	{
 		this.item[this.itemSelected] = 0;
 		this.itemSlot[this.itemSelected].texture = itemManager.items[0].ItemSprite;
@@ -520,10 +519,10 @@ public class GameControllerScript : Singleton<GameControllerScript>
 
 	public void LoseItem(int id)
 	{
-		this.item[id] = 0;
-		this.itemSlot[id].texture = this.itemTextures[0];
-		this.UpdateItemName();
-	}
+        this.item[id] = 0;
+        this.itemSlot[id].texture = itemManager.items[0].ItemSprite;
+        this.UpdateItemName();
+    }
 
 	private void UpdateItemName()
 	{
@@ -570,8 +569,10 @@ public class GameControllerScript : Singleton<GameControllerScript>
 		Camera.main.GetComponent<CameraScript>().offset = new Vector3(0f, -1f, 0f);
 	}
 
-	[SerializeField] private ItemManager itemManager; 
+	[SerializeField] private ItemManager itemManager;
+	public int MaxNotebooks;
 
+	[Space()]
 	public CursorControllerScript cursorController;
 
 	public PlayerScript player;
@@ -695,7 +696,7 @@ public class GameControllerScript : Singleton<GameControllerScript>
 
 	private float gameOverDelay;
 
-	private AudioSource audioDevice;
+	[HideInInspector] public AudioSource audioDevice;
 
 	public AudioClip aud_Soda;
 

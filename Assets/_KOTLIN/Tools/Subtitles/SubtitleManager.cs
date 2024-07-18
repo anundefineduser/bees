@@ -16,31 +16,7 @@ namespace KOTLIN.Subtitles
     {
         [SerializeField] private Canvas SubtitleUI;
         [SerializeField] private GameObject SubtitlePrefab;
-
-        public bool KillSubtitlesOnSceneUnload = true;
         public float subTimeScale; 
-
-        private void Start()
-        {
-            SceneManager.sceneUnloaded += SceneUnLoad;
-        }
-
-        private void OnDestroy()
-        {
-            SceneManager.sceneUnloaded -= SceneUnLoad;
-        }
-
-        private void SceneUnLoad(Scene currentScene)
-        {
-            if (KillSubtitlesOnSceneUnload)
-            {
-                foreach (RectTransform transform in SubtitleUI.GetComponentsInChildren<RectTransform>())
-                {
-                    if (transform.gameObject != SubtitlePrefab)
-                        Destroy(transform.gameObject); 
-                }
-            }
-        }
 
         public void CreateSubtitle(SubtitleType type, string text, float time, bool forever, Color colour, AudioSource audCreator, Transform creator)
         {

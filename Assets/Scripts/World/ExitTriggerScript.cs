@@ -3,6 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class ExitTriggerScript : MonoBehaviour
 {
+    private void Start()
+    {
+        gc = GameControllerScript.Instance; 
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (this.gc.notebooks >= 7 & other.tag == "Player")
@@ -18,5 +23,5 @@ public class ExitTriggerScript : MonoBehaviour
         }
     }
 
-    public GameControllerScript gc;
+    private GameControllerScript gc;
 }

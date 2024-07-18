@@ -1,4 +1,4 @@
-public class InteractTest : KOTLIN.Interactable
+public class InteractTest : KOTLIN.Interactions.Interactable
 {
     public override void Interact()
     {

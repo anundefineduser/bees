@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace KOTLIN
+namespace KOTLIN.Interactions
 {
     public class Interactable : MonoBehaviour
     {
