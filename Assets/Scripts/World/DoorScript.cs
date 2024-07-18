@@ -43,7 +43,7 @@ public class DoorScript : KOTLIN.Interactions.Interactable
             this.baldi.Hear(base.transform.position, 1f); //If the door isn't silent, Baldi hears the door with a priority of 1.
         }
         this.OpenDoor();
-        //SubtitleManager.Instance.CreateSubtitleTranslated(SubtitleType.ThreeD, "World_DoorOpen", 3, false, Color.blue, myAudio, transform);
+        SubtitleManager.Instance.CreateSubtitleTranslated(SubtitleType.ThreeD, "World_DoorOpen", 3, false, Color.blue, myAudio, transform);
         if (this.silentOpens > 0) //If the door is silent
         {
             this.silentOpens--; //Decrease the amount of opens the door will stay quite for.

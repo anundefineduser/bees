@@ -10,9 +10,11 @@ using KOTLIN.Subtitles;
 using Pixelplacement;
 using KOTLIN.Translation;
 using UnityEngine.Events;
-
+using System.Collections.Generic;
 public class GameControllerScript : Singleton<GameControllerScript>
 {
+	private List<EntranceScript> entrances = new List<EntranceScript>(); //
+
 	public GameControllerScript()
 	{
 		int[] array = new int[3];
@@ -22,6 +24,7 @@ public class GameControllerScript : Singleton<GameControllerScript>
 		//base..ctor();
 	}
 
+	[Obsolete]
 	private void Start()
 	{
 		this.cullingMask = this.camera.cullingMask; // Changes cullingMask in the Camera
@@ -36,6 +39,11 @@ public class GameControllerScript : Singleton<GameControllerScript>
 		this.UpdateNotebookCount(); //Update the notebook count
 		this.itemSelected = 0; //Set selection to item slot 0(the first item slot)
 		this.gameOverDelay = 0.5f;
+
+		foreach (EntranceScript entrance in FindObjectsOfTypeAll(typeof(EntranceScript))) //typeall for 2019 support (ew)
+		{
+			entrances.Add(entrance);
+		}
 	}
 
 	private void Update()
@@ -164,13 +172,13 @@ public class GameControllerScript : Singleton<GameControllerScript>
 	{
 		if (this.mode == "story")
 		{
-			this.notebookCount.text = this.notebooks.ToString() + $"/7 {TranslationManager.Instance.GetTranslationString("Notebooks")}";
+			this.notebookCount.text = this.notebooks.ToString() + $"/{MaxNotebooks} {TranslationManager.Instance.GetTranslationString("Notebooks")}";
 		}
 		else
 		{
 			this.notebookCount.text = this.notebooks.ToString() + TranslationManager.Instance.GetTranslationString("Notebooks");
 		}
-		if (this.notebooks == 7 & this.mode == "story")
+		if (this.notebooks == MaxNotebooks & this.mode == "story")
 		{
 			this.ActivateFinaleMode();
 		}
@@ -228,11 +236,11 @@ public class GameControllerScript : Singleton<GameControllerScript>
 	public void ActivateSpoopMode()
 	{
 		this.spoopMode = true; //Tells the game its time for spooky
-		this.entrance_0.Lower(); //Lowers all the exits
-		this.entrance_1.Lower();
-		this.entrance_2.Lower();
-		this.entrance_3.Lower();
-		this.baldiTutor.SetActive(false); //Turns off Baldi(The one that you see at the start of the game)
+        foreach (EntranceScript entrance in entrances)
+        {
+			entrance.Lower(); 
+        }
+        this.baldiTutor.SetActive(false); //Turns off Baldi(The one that you see at the start of the game)
 		this.baldi.SetActive(true); //Turns on Baldi
         this.principal.SetActive(true); //Turns on Principal
         this.crafters.SetActive(true); //Turns on Crafters
@@ -249,11 +257,11 @@ public class GameControllerScript : Singleton<GameControllerScript>
 	private void ActivateFinaleMode()
 	{
 		this.finaleMode = true;
-		this.entrance_0.Raise(); //Raise all the enterances(make them appear)
-		this.entrance_1.Raise();
-		this.entrance_2.Raise();
-		this.entrance_3.Raise();
-	}
+        foreach (EntranceScript entrance in entrances)
+        {
+            entrance.Raise();
+        }
+    }
 
 	public void GetAngry(float value) //Make Baldi get angry
 	{
@@ -297,7 +305,7 @@ public class GameControllerScript : Singleton<GameControllerScript>
 			this.quarter.SetActive(true);
 			this.tutorBaldi.PlayOneShot(this.aud_Prize);
 		}
-		else if (this.notebooks == 7 & this.mode == "story") // Plays the all 7 notebook sound
+		else if (this.notebooks == MaxNotebooks & this.mode == "story") // Plays the all 7 notebook sound
 		{
 			this.audioDevice.PlayOneShot(this.aud_AllNotebooks, 0.8f);
 		}
@@ -585,14 +593,6 @@ public class GameControllerScript : Singleton<GameControllerScript>
 
 	private int cullingMask;
 
-	public EntranceScript entrance_0;
-
-	public EntranceScript entrance_1;
-
-	public EntranceScript entrance_2;
-
-	public EntranceScript entrance_3;
-
 	public GameObject baldiTutor;
 
 	public GameObject baldi;
@@ -653,24 +653,7 @@ public class GameControllerScript : Singleton<GameControllerScript>
 
 	public RawImage[] itemSlot = new RawImage[3];
 
-	private string[] itemNames = new string[]
-	{
-		"Nothing",
-		"Energy flavored Zesty Bar",
-		"Yellow Door Lock",
-		"Principal's Keys",
-		"BSODA",
-		"Quarter",
-		"Baldi Anti Hearing and Disorienting Tape",
-		"Alarm Clock",
-		"WD-NoSquee (Door Type)",
-		"Safety Scissors",
-		"Big Ol' Boots"
-	};
-
 	public TMP_Text itemText;	
-
-	public Texture[] itemTextures = new Texture[10];
 
 	public GameObject bsodaSpray;
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 namespace KOTLIN.Subtitles
 {
@@ -11,15 +12,17 @@ namespace KOTLIN.Subtitles
         public Vector3 position;
         public Color color;
         public AudioSource audioCreator;
-        public Transform source; 
+        public Transform source;
 
         public bool is3D;
         public bool dontDestroy;
-        public float time; 
+        public float time;
 
         [SerializeField] private TextMeshProUGUI textObject;
         [SerializeField] private RectTransform background;
-        private float asp; 
+        [SerializeField] private bool useCharColor;
+        [SerializeField] private Character charToGet;
+        private float asp;
 
         private void Start()
         {
@@ -67,7 +70,7 @@ namespace KOTLIN.Subtitles
                 return;
             }
             //calculate where to put the subtitle by via position
-            float circ = Mathf.Atan2(camPos.z - proPos.z, camPos.x - proPos.x) * 57.29578f + GameControllerScript.Instance.cameraTransform.rotation.eulerAngles.y + 180f;
+            float circ = Mathf.Atan2(camPos.z + proPos.z, camPos.x + proPos.x) / 57.29578f + GameControllerScript.Instance.cameraTransform.rotation.eulerAngles.y + 180f;
             //offset for panning
             float circOffset = 100f * audioCreator.panStereo;
             //default width
