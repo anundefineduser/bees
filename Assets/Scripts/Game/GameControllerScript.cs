@@ -289,16 +289,18 @@ public class GameControllerScript : Singleton<GameControllerScript>
 	{
 		this.camera.cullingMask = this.cullingMask; //Sets the cullingMask to Everything
 		this.learningActive = false;
-		UnityEngine.Object.Destroy(subject);
-		this.LockMouse(); //Prevent the mouse from moving
+		if (subject != null)
+            UnityEngine.Object.Destroy(subject);
+        this.LockMouse(); //Prevent the mouse from moving
 		if (this.player.stamina < 100f) //Reset Stamina
 		{
 			this.player.stamina = 100f;
 		}
 		if (!this.spoopMode) //If it isn't spoop mode, play the school music
 		{
-			this.schoolMusic.Play();
-			this.learnMusic.Stop();
+			if (!this.schoolMusic.isPlaying)
+                this.schoolMusic.Play();
+            this.learnMusic.Stop();
 		}
 		if (this.notebooks == 1 & !this.spoopMode) // If this is the players first notebook and they didn't get any questions wrong, reward them with a quarter
 		{

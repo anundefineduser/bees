@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 243b44cafdabb2f4c842ae12a7f5ba99
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - m_ViewDataDictionary: {instanceID: 0}
+  - TilePrefab: {fileID: 3549483818145820087, guid: 1e51cea027365524a9984ec6d447e339,
+      type: 3}
+  - DoorPrefab: {fileID: 5012032263701009411, guid: 40dc4b947a3c7364fa32eef776d4aba9,
+      type: 3}
+  - EditorTools: {fileID: 2471242244414237911, guid: 8f94efcc76f1b4442a5a66b34d77ee43,
+      type: 3}
+  - ToolsTag: {fileID: 11400000, guid: 861e482672016764284cb34b9240b59e, type: 2}
+  - TilesTag: {fileID: 11400000, guid: 210bea4032cf620498346186cde148da, type: 2}
+  - AITag: {fileID: 11400000, guid: eba49557f962e2c4b972ba1545868d9f, type: 2}
+  - DefaultTextureProfile: {fileID: 11400000, guid: a3484a653c1429b4989a018c54e4c981,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -133,6 +134,7 @@ public class PlayerScript : MonoBehaviour
             this.stamina += this.staminaRate * Time.deltaTime;
         }
         this.staminaBar.value = this.stamina / this.maxStamina * 100f;
+        this.staminaText.text = $"{Math.Round(this.stamina)}%";
     }
 
     private void OnTriggerEnter(Collider other)
@@ -309,6 +311,8 @@ public class PlayerScript : MonoBehaviour
     public Transform firstPrizeTransform;
 
     public Slider staminaBar;
+
+    public TMPro.TextMeshProUGUI staminaText;
 
     public float db;
 

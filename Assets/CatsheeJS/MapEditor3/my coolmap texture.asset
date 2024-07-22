@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24ccc9f1cf7d5124d880919a64e2e716, type: 3}
+  m_Name: my coolmap texture
+  m_EditorClassIdentifier: 
+  DefaultFloorTex:
+    name: Floor
+    mat: {fileID: 2100000, guid: 9fc79ee8f847218469103e712783535b, type: 2}
+  DefaultWallTex:
+    name: Wall
+    mat: {fileID: 2100000, guid: 65683666e2ac4cd479f3c4ad90174ae4, type: 2}
+  DefaultThinWallTex:
+    name: 
+    mat: {fileID: 2100000, guid: c4e2f71595897ef46a9e913a26b2140a, type: 2}
+  DefaultCeilingTex:
+    name: Ceiling
+    mat: {fileID: 2100000, guid: c816aa729b2626c4db77487f9ef82aa5, type: 2}
+  RoomFloorTex:
+    name: 
+    mat: {fileID: 2100000, guid: 8f7c1dab8678c924c87938ba1f000b83, type: 2}
+  RoomWallTex:
+    name: 
+    mat: {fileID: 2100000, guid: 65683666e2ac4cd479f3c4ad90174ae4, type: 2}
+  RoomThinWallTex:
+    name: 
+    mat: {fileID: 2100000, guid: c4e2f71595897ef46a9e913a26b2140a, type: 2}
+  RoomCeilingTex:
+    name: 
+    mat: {fileID: 2100000, guid: c816aa729b2626c4db77487f9ef82aa5, type: 2}
+  floorTextures: []
+  wallTextures:
+  - name: Window
+    mat: {fileID: 2100000, guid: 178f988607b0b9341ab9de1f895e9b87, type: 2}
+  - name: School Rules Poster
+    mat: {fileID: 2100000, guid: be61bdffd85a6674f924d4e10d502d5b, type: 2}
+  ceilingTextures: []
